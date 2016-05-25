@@ -233,6 +233,23 @@ public class UsuarioLog extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        UsuarioDAO userDAO = new UsuarioDAO();
+        UsuarioVO miUser = new UsuarioVO();
+        
+        
+        int carne = Integer.parseInt(jTextField3.getText());
+        String contraseña = jTextField4.getText();
+        String nombre = jTextField5.getText();
+        String apellido = jTextField6.getText();
+        String correo = jTextField7.getText();
+        
+        miUser.setCarne(carne);
+        miUser.setContraseña(contraseña);
+        miUser.setNombre(nombre);
+        miUser.setApellido(apellido);
+        miUser.setCorreo(correo);
+        userDAO.registrarUsuario(miUser);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

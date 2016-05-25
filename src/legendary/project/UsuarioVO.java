@@ -25,15 +25,15 @@ public class UsuarioVO {
     }
     
     public String getApellido(){
-        return nombre;
+        return apellido;
     }
     
     public String getContraseña(){
-        return nombre;
+        return contraseña;
     }
     
     public String getCorreo(){
-        return nombre;
+        return correo;
     }
     
     public void setCarne(int carne){

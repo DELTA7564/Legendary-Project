@@ -17,7 +17,7 @@ public class UsuarioDAO {
         DbConnection conex = new DbConnection();
         try{
            Statement instruccion = conex.getConnection().createStatement();
-           instruccion.executeUpdate("INSERT INTO USUARIO VALUES ('"+usuario.getCarne()+"', '"+usuario.getContraseña()+"', '"+usuario.getNombre()+"', '"+usuario.getApellido()+"', '"+usuario.getCorreo()+"')");
+           instruccion.executeUpdate("INSERT INTO USUARIOS VALUES ('"+usuario.getCarne()+"', '"+usuario.getContraseña()+"', '"+usuario.getNombre()+"', '"+usuario.getApellido()+"', '"+usuario.getCorreo()+"')");
            JOptionPane.showMessageDialog(null, "Ingresado", "Informacion", JOptionPane.INFORMATION_MESSAGE);
            instruccion.close();
            conex.desconectar();
