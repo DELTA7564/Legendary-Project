@@ -7,8 +7,12 @@ package legendary.project;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -44,6 +48,7 @@ public class UsuarioPrincipal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         horas_en_total = new javax.swing.JLabel();
+        listar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,6 +80,13 @@ public class UsuarioPrincipal extends javax.swing.JFrame {
 
         horas_en_total.setText("|horas|");
 
+        listar.setText("Listar");
+        listar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -82,7 +94,7 @@ public class UsuarioPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(21, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(124, 124, 124)
@@ -97,6 +109,8 @@ public class UsuarioPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(horas_en_total)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(listar)
+                .addGap(37, 37, 37)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18))
         );
@@ -113,7 +127,8 @@ public class UsuarioPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(horas_en_total)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(listar))
                 .addGap(57, 57, 57))
         );
 
@@ -123,7 +138,7 @@ public class UsuarioPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,7 +158,6 @@ public class UsuarioPrincipal extends javax.swing.JFrame {
             "Descripcion: ","Carne: "};
         String datosFormulario[] = new String[4];
         for (int i = 0; i < datosSolicitados.length; i++) {
-            //solicita el ingreso del dato y se almacena en el arreglo de datosPersona
             datosFormulario[i]=JOptionPane.showInputDialog(null, mensajeIngreso+
                 datosSolicitados[i],"Datos Persona",JOptionPane.INFORMATION_MESSAGE);
 
@@ -155,13 +169,37 @@ public class UsuarioPrincipal extends javax.swing.JFrame {
         miFormulario.setDescripcion(datosFormulario[2]);
         miFormulario.setCarne(Integer.parseInt(datosFormulario[3]));
 
-        miFormularioDAO.registrarPersona(miFormulario);        
-      //  UsuarioIngreso uin = new UsuarioIngreso();
-     //   uin.setVisible(true);
+        miFormularioDAO.registrarPersona(miFormulario);       
         
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarActionPerformed
+    miFormularioDAO = new FormularioDAO();
+  FormularioVO miPersona;
+   DefaultTableModel modelo = new DefaultTableModel();
+  //Se obtiene la lista de personas
+  ArrayList< FormularioVO> listaPersonas = miFormularioDAO.listaDeFormularios();
+  //se valida si se obtubo o no informacion
+  if (listaPersonas.size()>=0) {
+   int numeroPersona=0;
+   for (int i = 0; i < listaPersonas.size(); i++) {
+    numeroPersona++;
+    miPersona=listaPersonas.get(i);
+     String [] nombres = {String.valueOf(miPersona.getId()),String.valueOf(miPersona.getHora()),miPersona.getDescripcion()};
+    modelo.addColumn(miPersona.getId());
+    modelo.addColumn(miPersona.getHora());
+    modelo.addColumn(miPersona.getDescripcion());
+    modelo.addRow(nombres);
+   }
+    this.jTable1.setModel(modelo);
+  }else{
+   JOptionPane.showMessageDialog(null,"Actualmente no " +
+     "existen registros de Formularios","INFORMACIÓN",JOptionPane.INFORMATION_MESSAGE);
+  }
+ 
+    }//GEN-LAST:event_listarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,6 +245,7 @@ public class UsuarioPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton listar;
     private javax.swing.JLabel nombre_usuario;
     // End of variables declaration//GEN-END:variables
 }
