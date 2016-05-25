@@ -14,7 +14,7 @@ public class FormularioVO{
  private Integer Id;
  private Integer Hora;
  private String Descripcion;
- private int Carne;
+ private Integer Carne;
   
  /**
   * @return the idPersona
