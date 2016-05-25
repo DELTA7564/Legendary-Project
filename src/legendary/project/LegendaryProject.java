@@ -18,8 +18,10 @@ public class LegendaryProject {
     public static void main(String[] args) {
         DbConnection db = new DbConnection();
         db.getConnection();
+        
         UsuarioPrincipal us= new UsuarioPrincipal();
         us.setVisible(true);
+        
         
     } 
 }

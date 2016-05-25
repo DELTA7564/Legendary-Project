@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  * @author Home
  */
 public class UsuarioPrincipal extends javax.swing.JFrame {
-
+        FormularioDAO miFormularioDAO;
     /**
      * Creates new form UsuarioPrincipal
      */
@@ -82,7 +82,7 @@ public class UsuarioPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(21, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(124, 124, 124)
@@ -114,7 +114,7 @@ public class UsuarioPrincipal extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(horas_en_total)
                     .addComponent(jButton1))
-                .addGap(56, 56, 56))
+                .addGap(57, 57, 57))
         );
 
         jTabbedPane1.addTab("Inicio", jPanel1);
@@ -134,9 +134,30 @@ public class UsuarioPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        UsuarioIngreso uin = new UsuarioIngreso();
-        uin.setVisible(true);
+  miFormularioDAO = new FormularioDAO();
+        FormularioVO miFormulario=new FormularioVO();
+
+        String mensajeIngreso="Ingrese\n\n";
+
+        String datosSolicitados[] = {"Id : ","Hora : ",
+            "Descripcion: ","Carne: "};
+        String datosFormulario[] = new String[4];
+        for (int i = 0; i < datosSolicitados.length; i++) {
+            //solicita el ingreso del dato y se almacena en el arreglo de datosPersona
+            datosFormulario[i]=JOptionPane.showInputDialog(null, mensajeIngreso+
+                datosSolicitados[i],"Datos Persona",JOptionPane.INFORMATION_MESSAGE);
+
+            System.out.println(datosSolicitados[i]+datosFormulario[i]);
+        }
+
+        miFormulario.setId(Integer.parseInt(datosFormulario[0]));
+        miFormulario.setHora(Integer.parseInt(datosFormulario[1]));
+        miFormulario.setDescripcion(datosFormulario[2]);
+        miFormulario.setCarne(Integer.parseInt(datosFormulario[3]));
+
+        miFormularioDAO.registrarPersona(miFormulario);        
+      //  UsuarioIngreso uin = new UsuarioIngreso();
+     //   uin.setVisible(true);
         
         
         
