@@ -24,7 +24,7 @@ public class FormularioDAO {
    Statement instruccion = conex.getConnection().createStatement();
    instruccion.executeUpdate("INSERT INTO FORMULARIO VALUES ('"+Formulario.getId()+"', '"
      +Formulario.getHora()+"', '"+Formulario.getDescripcion()+"', '"
-     +Formulario.getCarne());
+     +Formulario.getCarne()+"')");
    JOptionPane.showMessageDialog(null, "Se ha registrado Exitosamente","Información",JOptionPane.INFORMATION_MESSAGE);
    instruccion.close();
    conex.desconectar();
@@ -40,7 +40,7 @@ public class FormularioDAO {
   DbConnection conex= new DbConnection();
      
   try {
-   PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT * FROM persona");
+   PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT FROM FORMULARIO WHERE ID=1");
    ResultSet res = consulta.executeQuery();
    while(res.next()){
     FormularioVO formulario= new FormularioVO();
