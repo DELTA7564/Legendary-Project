@@ -36,18 +36,22 @@ public class FormularioDAO {
  }
      
      public ArrayList< FormularioVO> listaDeFormularios() {
-  ArrayList< FormularioVO> miFormulario = new ArrayList< FormularioVO>();
+  ArrayList<FormularioVO> miFormulario = new ArrayList< FormularioVO>();
   DbConnection conex= new DbConnection();
      
   try {
-   PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT FROM FORMULARIO WHERE ID=1");
+   PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT * FROM FORMULARIO");
    ResultSet res = consulta.executeQuery();
    while(res.next()){
     FormularioVO formulario= new FormularioVO();
     formulario.setId(Integer.parseInt(res.getString("Id")));
+    
     formulario.setHora(Integer.parseInt(res.getString("Hora")));
+    
     formulario.setDescripcion(res.getString("Descripcion"));
+   
     miFormulario.add(formulario);
+    
           }
           res.close();
           consulta.close();

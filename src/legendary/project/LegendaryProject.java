@@ -16,8 +16,7 @@ public class LegendaryProject {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        DbConnection db = new DbConnection();
-        db.getConnection();
+        
         
         UsuarioPrincipal us= new UsuarioPrincipal();
         us.setVisible(true);
