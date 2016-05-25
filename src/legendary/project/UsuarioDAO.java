@@ -25,5 +25,5 @@ public class UsuarioDAO {
             System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null, "Error", "Informacion", JOptionPane.INFORMATION_MESSAGE);
         }
-    }
+    } 
 }
