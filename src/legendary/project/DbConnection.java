@@ -13,7 +13,7 @@ public class DbConnection {
     /**Parametros de conexion*/
    static String bd = "universidad";
    static String login = "root";
-   static String password = "123";
+   static String password = "";
    static String url = "jdbc:mysql://localhost/"+bd;
  
    Connection connection = null;
