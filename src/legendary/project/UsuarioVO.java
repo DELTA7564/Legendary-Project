@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Esta clase tiene como objeto llenar la informacion para usuario y que sea de
+ * facil acceso
  */
 package legendary.project;
 
@@ -10,13 +9,14 @@ package legendary.project;
  * @author Home
  */
 public class UsuarioVO {
-    
+    //ecapsulacion
     private int carne;
     private String contraseña;
     private String nombre;
     private String apellido;
     private String correo;
     
+    //getters
     public int getCarne(){
         return carne;
     }
@@ -36,6 +36,7 @@ public class UsuarioVO {
         return correo;
     }
     
+    //setters
     public void setCarne(int carne){
         this.carne = carne;
     }

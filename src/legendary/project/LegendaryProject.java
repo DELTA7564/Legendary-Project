@@ -18,10 +18,8 @@ public class LegendaryProject {
     public static void main(String[] args) {
         
         
-        UsuarioLog us= new UsuarioLog();
-        us.setVisible(true);
-        
-        
+        UsuarioLog us= new UsuarioLog();                                        //Se crea un objeto de tipo jFrame 
+        us.setVisible(true);                                                    //Se hace visible el frame
     } 
 }
 

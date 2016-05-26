@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Esta clase tiene como objetivo llenar los datos para formulario
  */
 package legendary.project;
 
@@ -10,7 +8,7 @@ package legendary.project;
  * @author cristobal
  */
 public class FormularioVO{
-  
+ //encapsulación de las variables
  private Integer Id;
  private Integer Hora;
  private String Descripcion;

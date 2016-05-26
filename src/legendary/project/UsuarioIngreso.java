@@ -179,7 +179,7 @@ public class UsuarioIngreso extends javax.swing.JFrame {
         miFormulario.setDescripcion(desc_txt.getText());
         miFormulario.setCarne(Integer.parseInt(String.valueOf(carne_txt.getText())));
 
-        miFormularioDAO.registrarPersona(miFormulario);
+        miFormularioDAO.registrarFormulario(miFormulario);
 
         limpiar();
 
