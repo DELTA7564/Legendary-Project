@@ -35,12 +35,13 @@ public class FormularioDAO {
   }
  }
      
-     public ArrayList< FormularioVO> listaDeFormularios() {
+     public ArrayList< FormularioVO> listaDeFormularios(int carne) {
   ArrayList<FormularioVO> miFormulario = new ArrayList< FormularioVO>();
   DbConnection conex= new DbConnection();
      
   try {
-   PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT * FROM FORMULARIO");
+   PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT * FROM FORMULARIO WHERE carne = ?");
+   consulta.setInt(1, carne);
    ResultSet res = consulta.executeQuery();
    while(res.next()){
     FormularioVO formulario= new FormularioVO();

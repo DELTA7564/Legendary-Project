@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class UsuarioPrincipal extends javax.swing.JFrame {
         FormularioDAO miFormularioDAO;
+        int carne;
     /**
      * Creates new form UsuarioPrincipal
      */
@@ -177,14 +178,14 @@ public class UsuarioPrincipal extends javax.swing.JFrame {
 
     private void listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarActionPerformed
     miFormularioDAO = new FormularioDAO();
-  FormularioVO miPersona;
-   DefaultTableModel modelo = new DefaultTableModel();
-  //Se obtiene la lista de personas
-  ArrayList< FormularioVO> listaPersonas = miFormularioDAO.listaDeFormularios();
-  //se valida si se obtubo o no informacion
-  if (listaPersonas.size()>=0) {
-   int numeroPersona=0;
-   for (int i = 0; i < listaPersonas.size(); i++) {
+    FormularioVO miPersona;
+    DefaultTableModel modelo = new DefaultTableModel();
+    //Se obtiene la lista de personas
+     ArrayList< FormularioVO> listaPersonas = miFormularioDAO.listaDeFormularios(carne);
+    //se valida si se obtubo o no informacion
+    if (listaPersonas.size()>=0) {
+    int numeroPersona=0;
+    for (int i = 0; i < listaPersonas.size(); i++) {
     numeroPersona++;
     miPersona=listaPersonas.get(i);
      String [] nombres = {String.valueOf(miPersona.getId()),String.valueOf(miPersona.getHora()),miPersona.getDescripcion()};
@@ -248,4 +249,8 @@ public class UsuarioPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton listar;
     private javax.swing.JLabel nombre_usuario;
     // End of variables declaration//GEN-END:variables
+
+    void setCarne(int carne) {
+        this.carne = carne;
+    }
 }

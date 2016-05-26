@@ -18,7 +18,7 @@ public class LegendaryProject {
     public static void main(String[] args) {
         
         
-        UsuarioPrincipal us= new UsuarioPrincipal();
+        UsuarioLog us= new UsuarioLog();
         us.setVisible(true);
         
         

@@ -264,6 +264,7 @@ public class UsuarioLog extends javax.swing.JFrame {
         System.out.println(jTextField2.getText());
         if(miUser.getContraseña().compareTo(jTextField2.getText())==0){
             UsuarioPrincipal mains=new UsuarioPrincipal();
+            mains.setCarne(carne);
             mains.setVisible(true);
             this.setVisible(false);
         }else{
