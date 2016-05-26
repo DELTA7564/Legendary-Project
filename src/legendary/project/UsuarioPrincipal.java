@@ -19,16 +19,16 @@ import javax.swing.table.DefaultTableModel;
  * @author Home
  */
 public class UsuarioPrincipal extends javax.swing.JFrame {
-        FormularioDAO miFormularioDAO;
-        int carne;
+
+    FormularioDAO miFormularioDAO;
+    int carne;
+
     /**
      * Creates new form UsuarioPrincipal
      */
     public UsuarioPrincipal() {
         initComponents();
-        
-        
-        
+
     }
 
     /**
@@ -79,7 +79,7 @@ public class UsuarioPrincipal extends javax.swing.JFrame {
 
         jLabel2.setText("Horas en total:");
 
-        horas_en_total.setText("|horas|");
+        horas_en_total.setText("0");
 
         listar.setText("Listar");
         listar.addActionListener(new java.awt.event.ActionListener() {
@@ -150,56 +150,37 @@ public class UsuarioPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-  miFormularioDAO = new FormularioDAO();
-        FormularioVO miFormulario=new FormularioVO();
+        UsuarioIngreso uis = new UsuarioIngreso();
+        uis.setCarne(carne);
+        uis.setVisible(true);
 
-        String mensajeIngreso="Ingrese\n\n";
-
-        String datosSolicitados[] = {"Id : ","Hora : ",
-            "Descripcion: ","Carne: "};
-        String datosFormulario[] = new String[4];
-        for (int i = 0; i < datosSolicitados.length; i++) {
-            datosFormulario[i]=JOptionPane.showInputDialog(null, mensajeIngreso+
-                datosSolicitados[i],"Datos Persona",JOptionPane.INFORMATION_MESSAGE);
-
-            System.out.println(datosSolicitados[i]+datosFormulario[i]);
-        }
-
-        miFormulario.setId(Integer.parseInt(datosFormulario[0]));
-        miFormulario.setHora(Integer.parseInt(datosFormulario[1]));
-        miFormulario.setDescripcion(datosFormulario[2]);
-        miFormulario.setCarne(Integer.parseInt(datosFormulario[3]));
-
-        miFormularioDAO.registrarPersona(miFormulario);       
-        
-        
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarActionPerformed
-    miFormularioDAO = new FormularioDAO();
-    FormularioVO miPersona;
-    DefaultTableModel modelo = new DefaultTableModel();
-    //Se obtiene la lista de personas
-     ArrayList< FormularioVO> listaPersonas = miFormularioDAO.listaDeFormularios(carne);
-    //se valida si se obtubo o no informacion
-    if (listaPersonas.size()>=0) {
-    int numeroPersona=0;
-    for (int i = 0; i < listaPersonas.size(); i++) {
-    numeroPersona++;
-    miPersona=listaPersonas.get(i);
-     String [] nombres = {String.valueOf(miPersona.getId()),String.valueOf(miPersona.getHora()),miPersona.getDescripcion()};
-    modelo.addColumn(miPersona.getId());
-    modelo.addColumn(miPersona.getHora());
-    modelo.addColumn(miPersona.getDescripcion());
-    modelo.addRow(nombres);
-   }
-    this.jTable1.setModel(modelo);
-  }else{
-   JOptionPane.showMessageDialog(null,"Actualmente no " +
-     "existen registros de Formularios","INFORMACIÓN",JOptionPane.INFORMATION_MESSAGE);
-  }
- 
+        miFormularioDAO = new FormularioDAO();
+        FormularioVO miPersona;
+        DefaultTableModel modelo = new DefaultTableModel();
+        ArrayList< FormularioVO> listaPersonas = miFormularioDAO.listaDeFormularios(carne);
+        int horas = 0;
+        if (listaPersonas.size() >= 0) {
+            int numeroPersona = 0;
+            modelo.addColumn("Id");
+            modelo.addColumn("Hora");
+            modelo.addColumn("Descripcion");
+            for (int i = 0; i < listaPersonas.size(); i++) {
+                numeroPersona++;
+                miPersona = listaPersonas.get(i);
+                horas = horas + miPersona.getHora();
+                String[] nombres = {String.valueOf(miPersona.getId()), String.valueOf(miPersona.getHora()), miPersona.getDescripcion()};
+                modelo.addRow(nombres);
+            }
+            this.jTable1.setModel(modelo);
+            horas_en_total.setText(String.valueOf(horas));
+        } else {
+            JOptionPane.showMessageDialog(null, "Actualmente no "
+                    + "existen registros de Formularios", "INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE);
+        }
+
     }//GEN-LAST:event_listarActionPerformed
 
     /**
@@ -252,5 +233,6 @@ public class UsuarioPrincipal extends javax.swing.JFrame {
 
     void setCarne(int carne) {
         this.carne = carne;
+        nombre_usuario.setText(String.valueOf(carne));
     }
 }

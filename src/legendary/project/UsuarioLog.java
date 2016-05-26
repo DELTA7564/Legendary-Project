@@ -237,21 +237,20 @@ public class UsuarioLog extends javax.swing.JFrame {
         // TODO add your handling code here:
         UsuarioDAO userDAO = new UsuarioDAO();
         UsuarioVO miUser = new UsuarioVO();
-        
-        
+
         int carne = Integer.parseInt(jTextField3.getText());
         String contraseña = jTextField4.getText();
         String nombre = jTextField5.getText();
         String apellido = jTextField6.getText();
         String correo = jTextField7.getText();
-        
+
         miUser.setCarne(carne);
         miUser.setContraseña(contraseña);
         miUser.setNombre(nombre);
         miUser.setApellido(apellido);
         miUser.setCorreo(correo);
         userDAO.registrarUsuario(miUser);
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -262,15 +261,15 @@ public class UsuarioLog extends javax.swing.JFrame {
         miUser = userDAO.consultaUsuario(carne);
         System.out.println(miUser.getContraseña());
         System.out.println(jTextField2.getText());
-        if(miUser.getContraseña().compareTo(jTextField2.getText())==0){
-            UsuarioPrincipal mains=new UsuarioPrincipal();
+        if (miUser.getContraseña().compareTo(jTextField2.getText()) == 0) {
+            UsuarioPrincipal mains = new UsuarioPrincipal();
             mains.setCarne(carne);
             mains.setVisible(true);
             this.setVisible(false);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Error: contraseña incorrecta", "Informacion", JOptionPane.INFORMATION_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

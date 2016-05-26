@@ -17,7 +17,7 @@ public class UsuarioDAO {
         DbConnection conex = new DbConnection();
         try{
            Statement instruccion = conex.getConnection().createStatement();
-           instruccion.executeUpdate("INSERT INTO USUARIOS VALUES ('"+usuario.getCarne()+"', '"+usuario.getContraseña()+"', '"+usuario.getNombre()+"', '"+usuario.getApellido()+"', '"+usuario.getCorreo()+"')");
+           instruccion.executeUpdate("INSERT INTO USUARIO VALUES ('"+usuario.getCarne()+"', '"+usuario.getContraseña()+"', '"+usuario.getNombre()+"', '"+usuario.getApellido()+"', '"+usuario.getCorreo()+"')");
            JOptionPane.showMessageDialog(null, "Ingresado", "Informacion", JOptionPane.INFORMATION_MESSAGE);
            instruccion.close();
            conex.desconectar();
@@ -31,7 +31,7 @@ public class UsuarioDAO {
         UsuarioVO miUser = new UsuarioVO();
         DbConnection conex= new DbConnection();
         try{
-            PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT Contraseña FROM USUARIOS where carne = ?");
+            PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT Contraseña FROM USUARIO where carne = ?");
             consulta.setInt(1, carne);
             ResultSet res = consulta.executeQuery();
             if(res.next()){
