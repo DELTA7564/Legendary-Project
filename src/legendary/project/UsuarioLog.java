@@ -5,6 +5,8 @@
  */
 package legendary.project;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Home
@@ -254,6 +256,20 @@ public class UsuarioLog extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        UsuarioDAO userDAO = new UsuarioDAO();
+        UsuarioVO miUser = new UsuarioVO();
+        int carne = Integer.parseInt(jTextField1.getText());
+        miUser = userDAO.consultaUsuario(carne);
+        System.out.println(miUser.getContraseña());
+        System.out.println(jTextField2.getText());
+        if(miUser.getContraseña().compareTo(jTextField2.getText())==0){
+            UsuarioPrincipal mains=new UsuarioPrincipal();
+            mains.setVisible(true);
+            this.setVisible(false);
+        }else{
+            JOptionPane.showMessageDialog(null, "Error: contraseña incorrecta", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

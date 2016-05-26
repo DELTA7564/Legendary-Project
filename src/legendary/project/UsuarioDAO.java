@@ -25,5 +25,27 @@ public class UsuarioDAO {
             System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null, "Error", "Informacion", JOptionPane.INFORMATION_MESSAGE);
         }
-    } 
+    }
+    
+    public UsuarioVO consultaUsuario(int carne){
+        UsuarioVO miUser = new UsuarioVO();
+        DbConnection conex= new DbConnection();
+        try{
+            PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT Contraseña FROM USUARIOS where carne = ?");
+            consulta.setInt(1, carne);
+            ResultSet res = consulta.executeQuery();
+            if(res.next()){
+                miUser.setContraseña(res.getString("contraseña"));
+            }
+            res.close();
+            consulta.close();
+            conex.desconectar();
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error: Usuario no encontrado", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+        
+        return miUser;
+    }
 }
