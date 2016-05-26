@@ -181,6 +181,7 @@ public class UsuarioIngreso extends javax.swing.JFrame {
 
         miFormularioDAO.registrarPersona(miFormulario);
 
+        limpiar();
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -245,5 +246,12 @@ public class UsuarioIngreso extends javax.swing.JFrame {
 void setCarne(int carne) {
         this.carne = carne;
         carne_txt.setText(String.valueOf(carne));
+    }
+
+    private void limpiar() {
+       id_txt.setText("");
+       horas_txt.setText("");
+       desc_txt.setText("");
+       
     }
 }

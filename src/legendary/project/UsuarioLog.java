@@ -250,6 +250,9 @@ public class UsuarioLog extends javax.swing.JFrame {
         miUser.setApellido(apellido);
         miUser.setCorreo(correo);
         userDAO.registrarUsuario(miUser);
+        
+        limpiar();
+        
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -336,4 +339,12 @@ public class UsuarioLog extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
+
+    private void limpiar() {
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+        jTextField6.setText("");
+        jTextField7.setText("");
+    }
 }
